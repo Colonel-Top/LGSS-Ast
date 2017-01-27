@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "valiant-carrier-156813",
+  "private_key_id": "2a253bd27718f0071fd1acdbdc59c0e9555517bf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDLEKhpMEd+C5oU\n46q9AGGk3QsFPgHV3VZZB0Zfr8vr1A+NaD98EhPNiHdzOK6s8/Kpv57tlmT5sjaP\nSwr1wiSUn4PJR7rwohF6c9VROsVaVLlFi1nrCClaNDbXlKOnHnyUenPYVaUP8Qn2\nw6PKKLFuxLIJyA/YRwtYsOqv7cTCj8df6UZRjW29tvbLG8gk783o7KLGQj0UOiDl\ncnmkhd0I3Vhy70LKxNgin5QTwonTsI8B5twM0MBSdIJc1Z4+65/bkOz+tDrnQRzC\nIWV3yTJ4wQY3vJyYMv5YdyZ/k1JYjxe9I8zN96tKevwvwhQjcKAsP50XReTOc3g2\nBXZBUNMZAgMBAAECggEALYdwmxUOEn67b0+Uaof5XKOK4wQCGVdlEtUEvFOIHzoO\nup/TDBhphD3CunzM/U487D5gfdiojyub/AjRTkTXOtOBEtIYYfeUf6YU//9zXEt+\nts8FvCK6UtU+LpvPDZtSR2AlNS4OskJS/5bh1GPHVJSZboQCuXVEYABavlNLOGvq\nAcQDhWq48DrJFagnyjB/2G31N+JykXug1m7IMrramnLlygK72ppNue4ptQbHK1xI\nOSSAHDRClqtC47CymPGIaH5x/0iwmoKnleFS5SJrFeOdZzedG8P/+CW96ZPhsSXL\nfDZbeeEUK+mevECywDncHKrIJuuarSojXX9Zbsu+YQKBgQDnBJNlNWRoGZU1EBko\nB5W5ZA3k7raHsfZB66CIX+bopUbM5WnSdZt6SD4uDCxFBSqnVa7xkpspsEEjRvTC\nQPJG7V0Xusfl5wRg+gu5Ux4YSh92LIDlROVX82CfoxPt3D1EFHW+ywvz/eWmgAgN\n0GCZd9StPlP4GxjgfcA6VsnrhQKBgQDhBj7lBcBPJU3PzMJY/eHv2Mc6V8ct+w2l\n3X+YP+7366Da16Aqp+no4IzAQVmi9AZh821hP7MVT42OSF/uU4yKVsotUjtuIzLn\n4ozlR5gbvqoli6+aIwZdC5z9RgtN9VeifmHAX+ATwh3F6/J9VgOC4VD2t4ih8k2W\nKH2zQTvLhQKBgQDSbaiVF/1NlYADxZYkkEQhirHdRlOdZs0ZXrfrgO+kGmhTWuT5\nf4cP6543836foAUqRzIDebc8UgADUi7AgsgtMykI5GoRUEz8yMbFGKDhHyNpUUBX\nlloRsu7gens8vtBPoxNdpzZMGYmGEDlF2/kh0bU32P5DkOsoEWN3wHZMwQKBgQC4\nsoetM6tFSzky9r4OjVSFqUjdem7iLs5k9glkzhU3KRA+j/3HBUvY+XaN1xXbyq/y\ndfuxdrdnJoTp5D3ZQHp6kgIgcP6WyA1gh3NePgV7wGOnrZ/UxCrU9FNHD9b3hgkI\nNvPFEuy5SvtlGOVQOulm48mwt7ROOLO2LEYAe+q4gQKBgQClEtyXHDuvfZD7tt4S\nrSRAwW+LTqtQfeatLVF1WaYUiPZMpPdByGFjIRafOpTQAwd8Y6+bimb6sgSzH/+2\n/uNM4z1fEqB2VqeofFny7wX1PlHFzMkxuBHdRO3mQoUffhE40XgIYVbAVjPKyUdm\nyBNG/r9RS5A3e6PKoPMqM1tA1A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "notification-line-google@valiant-carrier-156813.iam.gserviceaccount.com",
+  "client_id": "110845953013276274230",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/notification-line-google%40valiant-carrier-156813.iam.gserviceaccount.com"
+}
