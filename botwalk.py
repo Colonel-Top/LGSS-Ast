@@ -48,7 +48,7 @@ class EchoBot(fbchat.Client):
     def on_message(self, mid, author_id, author_name, message, metadata):
         self.markAsDelivered(author_id, mid)  # mark delivered
         self.markAsRead(author_id)  # mark read
-
+        message = message.decode("utf-8")
         print("%s said: %s" % (author_id, message))
         status = 0
         # if you are not the author, echo
