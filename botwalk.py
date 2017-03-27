@@ -3,7 +3,9 @@ import time
 import random
 import string
 import gspread
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 from datetime import datetime
 
 now = datetime.now()
