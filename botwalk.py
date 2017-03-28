@@ -65,9 +65,9 @@ class EchoBot(fbchat.Client):
                     fo = open(gdate, "a")
                     fo.write(content+"\n")
                     fo.close()
-                    self.send(author_id,"เพิ่มตารางงาน,นัดหมายเรียบร้อยค่ะ")
+                    self.send(author_id,'เพิ่มตารางงาน,นัดหมายเรียบร้อยค่ะ')
                 except:
-                    self.send(author_id,"การเพิ่มตารางเวลาล้มเหลว")
+                    self.send(author_id,'การเพิ่มตารางเวลาล้มเหลว')
                 bot_mode = 0
                 bot_status = 0
                 status = 1
@@ -81,19 +81,19 @@ class EchoBot(fbchat.Client):
                     # Close opend file
                     fo.close()
                 except:
-                    self.send(author_id,"ไม่พบตารางเวลาหรือการอ่านล้มเหลว")
+                    self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
                 bot_mode = 0
                 bot_status = 0
                 status = 1
             if bot_status == 1 and status == 0 and bot_mode == 3:
-                self.send(author_id,"ไม่สามารถลบได้อยู่ในการพัฒนา")
+                self.send(author_id,'ไม่สามารถลบได้อยู่ในการพัฒนา')
                 bot_mode = 0
                 bot_status = 0
                 status = 1
             if bot_status == 1 and status == 0:
                 if "a" in message:
                     bot_mode = 1
-                    self.send(author_id,"a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:เนื้อหางาน")
+                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:เนื้อหางาน')
                 elif "b" in message:
                     bot_mode = 2
                 elif "c" in message:
@@ -102,9 +102,9 @@ class EchoBot(fbchat.Client):
                 for tmp in tellasc_cmd:
                     if tmp in message:
                         going = tmp.replace('tell all associate','')
-                        stringtosend = "Message From Colonel : "
+                        stringtosend = 'Message From Colonel : '
                         stringtosend += str(going)
-                        self.send(author_id,random.choice(tellasc_ans));
+                        self.send(author_id,random.choice(tellasc_ans))
                         #self.send(100002210119100,"Message From Colonel : " + going) #Aomsin
                         #self.send(100001717587402,"Message From Colonel : " + going) #Beer
                         #self.send(100000337186822,"Message From Colonel : " + going) #Pond
@@ -117,12 +117,12 @@ class EchoBot(fbchat.Client):
                         status = 1
             if status == 0:
                 if "pen menu" or "เปิดเมนู" in message:
-                    self.send(author_id,"กรุณาเลือกฟังก์ชัน");
-                    self.send(author_id,"a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวางาน\nc.ลบตารางเวลานัดหมาย");
-                    bot_status = 1;
+                    self.send(author_id,'กรุณาเลือกฟังก์ชัน');
+                    self.send(author_id,'a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวางาน\nc.ลบตารางเวลานัดหมาย')
+                    bot_status = 1
                     status = 1
             if status == 0:
-                if "Get Interest Now" in message:
+                if 'Get Interest Now' in message:
                     self.send(author_id,random.choice(bank_ans));
                     sent = client.send(colonelid, "AI has Awaken and Collecting Interest")
                     print("AI has Awaken and Collecting Interest")
