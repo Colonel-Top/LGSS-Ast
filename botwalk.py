@@ -4,8 +4,8 @@ import random
 import string
 import gspread
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+#eload(sys)
+#sys.setdefaultencoding('utf8')
 from datetime import datetime
 
 now = datetime.now()
@@ -76,8 +76,8 @@ class EchoBot(fbchat.Client):
                     gdate = now.date + "-" + now.month + "-" + now.year
                     # Open a file
                     fo = open(gdate, "r+")
-                    str = fo.read()
-                    print (str)
+                    strws = fo.read()
+                    print (strws)
                     # Close opend file
                     fo.close()
                 except:
@@ -103,7 +103,7 @@ class EchoBot(fbchat.Client):
                     if tmp in message:
                         going = tmp.replace('tell all associate','')
                         stringtosend = 'Message From Colonel : '
-                        stringtosend += str(going)
+                        stringtosend += strs(going)
                         self.send(author_id,random.choice(tellasc_ans))
                         #self.send(100002210119100,"Message From Colonel : " + going) #Aomsin
                         #self.send(100001717587402,"Message From Colonel : " + going) #Beer
