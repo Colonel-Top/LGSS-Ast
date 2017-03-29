@@ -4,8 +4,8 @@ import random
 import string
 import gspread
 import sys
-#reload(sys)
-#sys.setdefaultencoding('utf8')
+reload(sys)
+sys.setdefaultencoding('utf8')
 from datetime import datetime
 
 now = datetime.now()
@@ -55,7 +55,7 @@ class EchoBot(fbchat.Client):
     def on_message(self, mid, author_id, author_name, message, metadata):
         self.markAsDelivered(author_id, mid)  # mark delivered
         self.markAsRead(author_id)  # mark read
-        #message = message.decode("utf-8")
+        message = message.decode("utf-8")
         print("%s said: %s" % (author_id, message))
         status = 0
         global bot_mode
