@@ -22,8 +22,8 @@
       <file leaf-file-name="botwalk.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botwalk.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1342">
-              <caret line="156" column="32" lean-forward="true" selection-start-line="156" selection-start-column="32" selection-end-line="156" selection-end-column="32" />
+            <state relative-caret-position="162">
+              <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
               </folding>
@@ -519,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490765515702</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fix Debug B fction">
+      <created>1490765622336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1490765622336</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -598,7 +605,8 @@
     <MESSAGE value="Fix Exception string" />
     <MESSAGE value="Fix Exception string change fucntion" />
     <MESSAGE value="Push for Server version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Push for Server version" />
+    <MESSAGE value="Fix Debug B fction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Debug B fction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -662,8 +670,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botwalk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1342">
-          <caret line="156" column="32" lean-forward="true" selection-start-line="156" selection-start-column="32" selection-end-line="156" selection-end-column="32" />
+        <state relative-caret-position="162">
+          <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
           <folding>
             <element signature="e#24#35#0" expanded="true" />
           </folding>
