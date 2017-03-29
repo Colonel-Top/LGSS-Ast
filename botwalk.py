@@ -122,6 +122,7 @@ class EchoBot(fbchat.Client):
                     except:
                         self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
                     bot_status = 0
+                    bot_mode = 0
                     status = 1
                 if 'B' in message:
                     try:
@@ -137,6 +138,7 @@ class EchoBot(fbchat.Client):
                     except:
                         self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
                     bot_status = 0
+                    bot_mode = 0
                     status = 1
                 if 'c' in message:
                     try:
