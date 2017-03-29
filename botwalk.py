@@ -3,9 +3,10 @@ import time
 import random
 import string
 import gspread
+import os
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+#reload(sys)
+#sys.setdefaultencoding('utf8')
 from datetime import datetime
 
 now = datetime.now()
@@ -51,11 +52,34 @@ tellasc_ans = ['Okay i will update send msg for you','Yes, wait a second','Let m
 class EchoBot(fbchat.Client):
     def __init__(self, email, password, debug=True, user_agent=None):
         fbchat.Client.__init__(self, email, password, debug, user_agent)
-
+    if(now.second == 0):
+        try:
+            # Open a file
+            f = open(gdate, "r+")
+            text = f.readlines()
+            for line in text:
+                curday = line[0:2]
+                curmonth = line[3:5]
+                curyear =  line[6:8]
+                curhour = line[9:11]
+                curmin =  line[12:14]
+                if(curday == now.date and curmonth == now.month and curyear == now.year and curhour == now.hour):
+                    gdate = (now.strftime("%d-%m-%Y"))
+                    self.send(author_id,gdate)
+                    # Open a file
+                    fo = open(gdate, "r+")
+                    strws = fo.read()
+                    self.send(author_id,strws)
+                    # Close opend file
+                    fo.close()
+            # Close opend file
+            f.close()
+        except Exception as e:
+            print (e)
     def on_message(self, mid, author_id, author_name, message, metadata):
         self.markAsDelivered(author_id, mid)  # mark delivered
         self.markAsRead(author_id)  # mark read
-        message = message.encode("utf-8")
+        #message = message.encode("utf-8")
         print("%s said: %s" % (author_id, message))
         status = 0
         global bot_mode
@@ -70,10 +94,15 @@ class EchoBot(fbchat.Client):
             if bot_mode == 1 and bot_status == 1 and status == 0:
                 try:
                     gdate = message[0:10]
-                    content = message[10:]
+                    jobhour = message[11:13]
+                    jobmin = message[14:16]
+                    content = message[11:]
                     content.encode("utf-8")
                     fo = open(gdate, "a")
                     fo.write(content+"\n")
+                    fo.close()
+                    fo = open("serverdate","a");
+                    fo.write(gdate+","+jobhour+","+jobmin+"\n")
                     fo.close()
                     self.send(author_id,'เพิ่มตารางงาน,นัดหมายเรียบร้อยค่ะ')
                 except:
@@ -87,12 +116,15 @@ class EchoBot(fbchat.Client):
                     gdate = (now.strftime("%d-%m-%Y"))
                     f = open(gdate,"r+")
                     d = f.readlines()
-                    f.seek(0)
-                    for i in d:
-                        if i != linetoremove:
-                            f.write(i)
-                    f.truncate()
+                    tmpstring = ""
+                    for line in d:
+                        if line != linetoremove:
+                            tmpstring += line
                     f.close()
+                    os.remove(gdate)
+                    fo = open(gdate, "a")
+                    fo.write(tmpstring)
+                    fo.close()
                     self.send(author_id, 'ลบตารางงานดังกล่าวเรียบร้อย')
                 except Exception as e:
                     self.send(author_id, e)
@@ -103,11 +135,11 @@ class EchoBot(fbchat.Client):
             if bot_status == 1 and status == 0:
                 if 'a' in message:
                     bot_mode = 1
-                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:เนื้อหางาน')
+                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:22:00:เนื้อหางาน')
                     status = 1
                 if 'A' in message:
                     bot_mode = 1
-                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:เนื้อหางาน')
+                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:22:00:เนื้อหางาน')
                     status = 1
                 if 'b' in message:
                     try:
