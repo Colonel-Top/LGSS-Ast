@@ -22,8 +22,8 @@
       <file leaf-file-name="botwalk.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botwalk.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="96" column="45" lean-forward="true" selection-start-line="96" selection-start-column="45" selection-end-line="96" selection-end-column="45" />
+            <state relative-caret-position="662">
+              <caret line="197" column="87" lean-forward="false" selection-start-line="197" selection-start-column="87" selection-end-line="197" selection-end-column="87" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
               </folding>
@@ -484,7 +484,21 @@
       <option name="project" value="LOCAL" />
       <updated>1490718506815</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add Schedule Function">
+      <created>1490764827874</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1490764827874</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add Schedule Exception">
+      <created>1490764996361</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1490764996361</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -558,7 +572,9 @@
     <MESSAGE value="Add try sys set decode" />
     <MESSAGE value="Try new menu function" />
     <MESSAGE value="Try new menu function fix decode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Try new menu function fix decode" />
+    <MESSAGE value="Add Schedule Function" />
+    <MESSAGE value="Add Schedule Exception" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Schedule Exception" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -622,8 +638,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botwalk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="96" column="45" lean-forward="true" selection-start-line="96" selection-start-column="45" selection-end-line="96" selection-end-column="45" />
+        <state relative-caret-position="662">
+          <caret line="197" column="87" lean-forward="false" selection-start-line="197" selection-start-column="87" selection-end-line="197" selection-end-column="87" />
           <folding>
             <element signature="e#24#35#0" expanded="true" />
           </folding>

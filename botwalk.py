@@ -82,9 +82,8 @@ class EchoBot(fbchat.Client):
                 status = 1
             if bot_mode == 2 and bot_status == 1 and status == 0:
                 try:
-                    linetoremove = message[0]
-                    self.send(author_id,linetoremove)
-                    linetoremove = linetoremove -1
+                    linetoremove = int(message[0])
+
                     self.send(author_id,linetoremove)
                     gdate = (now.strftime("%d-%m-%Y"))
                     self.send(author_id,gdate)
@@ -92,8 +91,6 @@ class EchoBot(fbchat.Client):
                     d = f.readlines()
                     f.seek(0)
                     for i in d:
-                        self.send(author_id,'Begin')
-                        self.send(author_id,d)
                         if i != linetoremove:
                             f.write(i)
                     f.truncate()
@@ -104,13 +101,31 @@ class EchoBot(fbchat.Client):
                 bot_mode = 0
                 bot_status = 0
                 status = 1
-
             if bot_status == 1 and status == 0:
                 if 'a' in message:
                     bot_mode = 1
                     self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:เนื้อหางาน')
                     status = 1
+                if 'A' in message:
+                    bot_mode = 1
+                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:เนื้อหางาน')
+                    status = 1
                 if 'b' in message:
+                    try:
+                        self.send(author_id,'รายการตารางงานและการนัดหมายวันนี้')
+                        gdate = (now.strftime("%d-%m-%Y"))
+                        self.send(author_id,gdate)
+                        # Open a file
+                        fo = open(gdate, "r+")
+                        strws = fo.read()
+                        self.send(author_id,strws)
+                        # Close opend file
+                        fo.close()
+                    except:
+                        self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
+                    bot_status = 0
+                    status = 1
+                if 'B' in message:
                     try:
                         self.send(author_id,'รายการตารางงานและการนัดหมายวันนี้')
                         gdate = (now.strftime("%d-%m-%Y"))
@@ -142,6 +157,23 @@ class EchoBot(fbchat.Client):
                     bot_mode = 2
                     bot_status = 1
                     status = 1
+                if 'C' in message:
+                    try:
+                        self.send(author_id,'รายการตารางงานและการนัดหมายวันนี้')
+                        gdate = (now.strftime("%d-%m-%Y"))
+                        self.send(author_id,gdate)
+                        # Open a file
+                        fo = open(gdate, "r+")
+                        strws = fo.read()
+                        self.send(author_id,strws)
+                        # Close opend file
+                        fo.close()
+                        self.send(author_id,'กรุณาใส่เลขหัวข้องานที่ต้องการจะลบเช่น 3')
+                    except:
+                        self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
+                    bot_mode = 2
+                    bot_status = 1
+                    status = 1
             if status == 0:
                 for tmp in tellasc_cmd:
                     if tmp in message:
@@ -163,7 +195,7 @@ class EchoBot(fbchat.Client):
                 for tmp in menu_cmd:
                     if tmp in message:
                         self.send(author_id,'กรุณาเลือกฟังก์ชัน');
-                        self.send(author_id,'a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวางาน\nc.ลบตารางเวลานัดหมาย')
+                        self.send(author_id,'a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวลางาน\nc.ลบตารางเวลานัดหมาย')
                         bot_status = 1
                         status = 1
             if status == 0:
