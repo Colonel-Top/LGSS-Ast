@@ -4,11 +4,13 @@ import random
 import string
 import gspread
 import sys
-#eload(sys)
+#reload(sys)
 #sys.setdefaultencoding('utf8')
 from datetime import datetime
 
 now = datetime.now()
+
+
 from oauth2client.service_account import ServiceAccountCredentials
 import fbchat
 
@@ -27,6 +29,7 @@ sent = client.send(colonelid, "Google API Connected")
 print ("Google API Connected")
 sent = client.send(colonelid, 'Greeting Master')
 # Login with your Google account
+
 bot_status = 0
 bot_mode = 0
 # define hi or hello
@@ -34,12 +37,13 @@ greeting_w = ['Hello', 'Hi ', 'Greeting', 'สวัสดี','hello', 'hi ', '
 greeting_f = ['May i help you please ?', 'Yes ?', 'Ya Anything you want ?', 'Anything ? ya ?', 'Greeting yes ?','Always here']
 backasgre_w = ['Thx','Thank','ขอบคุณ','appreciate','ขอบใจ']
 backasgre_f = ['Your welcome','With Pleasure :)','with Appreciated','Ya','Okay ^^','Welcome','Never mind :)']
-
+menu_cmd = ['pen menu','pen Menu','เปิดเมนู','เรียกเมนู','show function','Show function','Show Menu','show menu','Show menu']
 simq_ask = ['ho are you','hat do you do','ho is your boss','ho am i','ell me a joke','ell me some joke']
 simq_ans = ['I am Chloe The Secretary of Colonel','I am Chloe The Secretary of Colonel ^^ Helping My Master & you guys','My Boss or my master is Colonel','Some Human in this world','Joke ? google it :)','Ahh Nope']
 
 bank_ask = ['eport account','ccount report','om engr account','pdate account','heck amout account','heck amout in account']
 bank_ans = ['Okay i will update account for you','Yes, wait a second','Let me check account','Here we go','Alright here is it','Ya this one ^^']
+
 
 tellasc_cmd = ['tell all associate']
 tellasc_ans = ['Okay i will update send msg for you','Yes, wait a second','Let me work on it','Here we go','Alright here is it','Ya this one ^^']
@@ -51,17 +55,22 @@ class EchoBot(fbchat.Client):
     def on_message(self, mid, author_id, author_name, message, metadata):
         self.markAsDelivered(author_id, mid)  # mark delivered
         self.markAsRead(author_id)  # mark read
-        message = message.decode("utf-8")
+        #message = message.decode("utf-8")
         print("%s said: %s" % (author_id, message))
         status = 0
+        global bot_mode
+        global bot_status
         # if you are not the author, echo
         if str(author_id) != str(self.uid):
             #self.send(author_id,message)
-            if bot_status == 1 and status == 0 and bot_mode == 1:
+            #self.send(author_id, bot_mode)
+            #self.send(author_id,bot_status)
+            #self.send(author_id,status)
+            #self.send(author_id,"-")
+            if bot_mode == 1 and bot_status == 1 and status == 0:
                 try:
                     gdate = message[0:10]
-                    content = message[11:]
-                    f.write("text to write\n")
+                    content = message[10:]
                     fo = open(gdate, "a")
                     fo.write(content+"\n")
                     fo.close()
@@ -71,33 +80,68 @@ class EchoBot(fbchat.Client):
                 bot_mode = 0
                 bot_status = 0
                 status = 1
-            if bot_status == 1 and status == 0 and bot_mode == 2:
+            if bot_mode == 2 and bot_status == 1 and status == 0:
                 try:
-                    gdate = now.date + "-" + now.month + "-" + now.year
-                    # Open a file
-                    fo = open(gdate, "r+")
-                    strws = fo.read()
-                    print (strws)
-                    # Close opend file
-                    fo.close()
-                except:
-                    self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
+                    linetoremove = message[0]
+                    self.send(author_id,linetoremove)
+                    linetoremove = linetoremove -1
+                    self.send(author_id,linetoremove)
+                    gdate = (now.strftime("%d-%m-%Y"))
+                    self.send(author_id,gdate)
+                    f = open(gdate,"r+")
+                    d = f.readlines()
+                    f.seek(0)
+                    for i in d:
+                        self.send(author_id,'Begin')
+                        self.send(author_id,d)
+                        if i != linetoremove:
+                            f.write(i)
+                    f.truncate()
+                    f.close()
+                except Exception as e:
+                    print str(e)
+                    self.send(author_id,'การลบตารางเวลาล้มเหลว')
                 bot_mode = 0
                 bot_status = 0
                 status = 1
-            if bot_status == 1 and status == 0 and bot_mode == 3:
-                self.send(author_id,'ไม่สามารถลบได้อยู่ในการพัฒนา')
-                bot_mode = 0
-                bot_status = 0
-                status = 1
+
             if bot_status == 1 and status == 0:
-                if "a" in message:
+                if 'a' in message:
                     bot_mode = 1
                     self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:เนื้อหางาน')
-                elif "b" in message:
+                    status = 1
+                if 'b' in message:
+                    try:
+                        self.send(author_id,'รายการตารางงานและการนัดหมายวันนี้')
+                        gdate = (now.strftime("%d-%m-%Y"))
+                        self.send(author_id,gdate)
+                        # Open a file
+                        fo = open(gdate, "r+")
+                        strws = fo.read()
+                        self.send(author_id,strws)
+                        # Close opend file
+                        fo.close()
+                    except:
+                        self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
+                    bot_status = 0
+                    status = 1
+                if 'c' in message:
+                    try:
+                        self.send(author_id,'รายการตารางงานและการนัดหมายวันนี้')
+                        gdate = (now.strftime("%d-%m-%Y"))
+                        self.send(author_id,gdate)
+                        # Open a file
+                        fo = open(gdate, "r+")
+                        strws = fo.read()
+                        self.send(author_id,strws)
+                        # Close opend file
+                        fo.close()
+                        self.send(author_id,'กรุณาใส่เลขหัวข้องานที่ต้องการจะลยเช่น 3')
+                    except:
+                        self.send(author_id,'ไม่พบตารางเวลาหรือการอ่านล้มเหลว')
                     bot_mode = 2
-                elif "c" in message:
-                    bot_mode = 3
+                    bot_status = 1
+                    status = 1
             if status == 0:
                 for tmp in tellasc_cmd:
                     if tmp in message:
@@ -116,11 +160,12 @@ class EchoBot(fbchat.Client):
                         self.send(author_id,random.choice(greeting_f));
                         status = 1
             if status == 0:
-                if "pen menu" or "เปิดเมนู" in message:
-                    self.send(author_id,'กรุณาเลือกฟังก์ชัน');
-                    self.send(author_id,'a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวางาน\nc.ลบตารางเวลานัดหมาย')
-                    bot_status = 1
-                    status = 1
+                for tmp in menu_cmd:
+                    if tmp in message:
+                        self.send(author_id,'กรุณาเลือกฟังก์ชัน');
+                        self.send(author_id,'a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวางาน\nc.ลบตารางเวลานัดหมาย')
+                        bot_status = 1
+                        status = 1
             if status == 0:
                 if 'Get Interest Now' in message:
                     self.send(author_id,random.choice(bank_ans));
@@ -179,7 +224,6 @@ class EchoBot(fbchat.Client):
                         sendstr = sendstr+ str(cell)
                         self.send(author_id,sendstr)
                         status = 1
-
             if status == 0:
                 self.send(author_id,"Sorry I don't know that");
 
