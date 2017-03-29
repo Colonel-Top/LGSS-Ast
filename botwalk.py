@@ -71,6 +71,7 @@ class EchoBot(fbchat.Client):
                 try:
                     gdate = message[0:10]
                     content = message[10:]
+                    content.encode("utf-8")
                     fo = open(gdate, "a")
                     fo.write(content+"\n")
                     fo.close()

@@ -23,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/botwalk.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
-              <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+              <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
               </folding>
@@ -526,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490765622336</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="try Fix encodig">
+      <created>1490765920795</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1490765920795</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -606,7 +613,9 @@
     <MESSAGE value="Fix Exception string change fucntion" />
     <MESSAGE value="Push for Server version" />
     <MESSAGE value="Fix Debug B fction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Debug B fction" />
+    <MESSAGE value="try Fix encodig" />
+    <MESSAGE value="try Fix encodig 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="try Fix encodig 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -671,7 +680,7 @@
     <entry file="file://$PROJECT_DIR$/botwalk.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
           <folding>
             <element signature="e#24#35#0" expanded="true" />
           </folding>
