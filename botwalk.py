@@ -83,10 +83,7 @@ class EchoBot(fbchat.Client):
             if bot_mode == 2 and bot_status == 1 and status == 0:
                 try:
                     linetoremove = int(message[0])
-
-                    self.send(author_id,linetoremove)
                     gdate = (now.strftime("%d-%m-%Y"))
-                    self.send(author_id,gdate)
                     f = open(gdate,"r+")
                     d = f.readlines()
                     f.seek(0)
@@ -95,6 +92,7 @@ class EchoBot(fbchat.Client):
                             f.write(i)
                     f.truncate()
                     f.close()
+                    self.send(author_id, 'ลบตารางงานดังกล่าวเรียบร้อย')
                 except Exception as e:
                     self.send(author_id, e)
                     self.send(author_id,'การลบตารางเวลาล้มเหลว')

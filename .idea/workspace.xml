@@ -22,8 +22,8 @@
       <file leaf-file-name="botwalk.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botwalk.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
-              <caret line="197" column="87" lean-forward="false" selection-start-line="197" selection-start-column="87" selection-end-line="197" selection-end-column="87" />
+            <state relative-caret-position="162">
+              <caret line="91" column="38" lean-forward="true" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
               </folding>
@@ -498,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490764996361</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fix Exception string">
+      <created>1490765145373</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1490765145373</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -574,7 +581,8 @@
     <MESSAGE value="Try new menu function fix decode" />
     <MESSAGE value="Add Schedule Function" />
     <MESSAGE value="Add Schedule Exception" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Schedule Exception" />
+    <MESSAGE value="Fix Exception string" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Exception string" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -638,8 +646,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botwalk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="197" column="87" lean-forward="false" selection-start-line="197" selection-start-column="87" selection-end-line="197" selection-end-column="87" />
+        <state relative-caret-position="162">
+          <caret line="91" column="38" lean-forward="true" selection-start-line="91" selection-start-column="38" selection-end-line="91" selection-end-column="38" />
           <folding>
             <element signature="e#24#35#0" expanded="true" />
           </folding>
