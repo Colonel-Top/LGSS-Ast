@@ -99,7 +99,7 @@ class EchoBot(fbchat.Client):
                     f.truncate()
                     f.close()
                 except Exception as e:
-                    print str(e)
+                    self.send(author_id, e)
                     self.send(author_id,'การลบตารางเวลาล้มเหลว')
                 bot_mode = 0
                 bot_status = 0
