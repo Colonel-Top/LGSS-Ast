@@ -5,8 +5,8 @@ import string
 import gspread
 import os
 import sys
-#reload(sys)
-#sys.setdefaultencoding('utf8')
+reload(sys)
+sys.setdefaultencoding('utf8')
 from datetime import datetime
 
 now = datetime.now()
