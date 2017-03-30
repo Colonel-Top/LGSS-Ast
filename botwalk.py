@@ -35,7 +35,7 @@ sent = client.send(colonelid, 'Greeting Master')
 bot_status = 0
 bot_mode = 0
 # define hi or hello
-greeting_w = ['Hello', 'Hi ', 'Greeting', 'สวัสดี','hello', 'hi ', 'greetings', 'sup', 'whats up','re you here']
+greeting_w = ['Hello', 'Hi ', 'Greeting', 'สวัสดี','hello', 'hi ', 'greetings', 'sup', 'whats up','re you here','หวัดดี']
 greeting_f = ['May i help you please ?', 'Yes ?', 'Ya Anything you want ?', 'Anything ? ya ?', 'Greeting yes ?','Always here']
 backasgre_w = ['Thx','Thank','ขอบคุณ','appreciate','ขอบใจ']
 backasgre_f = ['Your welcome','With Pleasure :)','with Appreciated','Ya','Okay ^^','Welcome','Never mind :)']
@@ -112,11 +112,11 @@ class EchoBot(fbchat.Client):
             if bot_status == 1 and status == 0:
                 if 'a' in message:
                     bot_mode = 1
-                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:22:00:เนื้อหางาน')
+                    self.send(author_id,'เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ \n\n31-12-2017:22:00:เนื้อหางาน')
                     status = 1
                 if 'A' in message:
                     bot_mode = 1
-                    self.send(author_id,'a.เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ 31-12-2017:22:00:เนื้อหางาน')
+                    self.send(author_id,'เพิ่มงาน,ตารางเวลานัดหมายได้\nกรุณาใช้รูปแบบดังต่อไปนี้ \n\n31-12-2017:22:00:เนื้อหางาน')
                     status = 1
                 if 'b' in message:
                     try:
@@ -184,6 +184,14 @@ class EchoBot(fbchat.Client):
                     bot_mode = 2
                     bot_status = 1
                     status = 1
+                if 'D' in message:
+                    bot_mode = 0
+                    bot_status = 0
+                    status =0
+                if 'd' in message:
+                    bot_mode = 0
+                    bot_status = 0
+                    status = 0
             if status == 0:
                 for tmp in tellasc_cmd:
                     if tmp in message:
@@ -205,9 +213,16 @@ class EchoBot(fbchat.Client):
                 for tmp in menu_cmd:
                     if tmp in message:
                         self.send(author_id,'กรุณาเลือกฟังก์ชัน');
-                        self.send(author_id,'a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวลางาน\nc.ลบตารางเวลานัดหมาย')
+                        self.send(author_id,'a.เพิ่มงาน,ตารางนัดหมาย\nb.ตรวจสอบตารางเวลางาน\nc.ลบตารางเวลานัดหมาย\nd.เพื่อย้อนกลับ/ยกเลิก')
                         bot_status = 1
                         status = 1
+            if status == 0:
+                if 'Ok' in message:
+                    self.send(author_id,"^^")
+                    status = 1
+                elif 'ok' in message:
+                    self.send(author_id,"^^")
+                    status = 1
             if status == 0:
                 if 'Get Interest Now' in message:
                     self.send(author_id,random.choice(bank_ans));
@@ -253,7 +268,7 @@ class EchoBot(fbchat.Client):
                         position = simq_ask.index(tmp)
                         self.send(author_id,simq_ans[position]);
                         status = 1
-            if status == 0:
+            '''if status == 0:
                 for tmp in bank_ask:
                     if tmp in message:
                         self.send(author_id,random.choice(bank_ans));
@@ -265,11 +280,14 @@ class EchoBot(fbchat.Client):
                         sendstr = "Current Amount in Account : "
                         sendstr = sendstr+ str(cell)
                         self.send(author_id,sendstr)
-                        status = 1
+                        status = 1'''
             if status == 0:
-                self.send(author_id,"Sorry I don't know that");
+                self.send(author_id,"Sorry I don't know that \nYou can try: \nopen menu \nshow menu \nเรียกเมนู \nเปิดเมนู \nshow function");
 
 
 bot = EchoBot("colonel-secretary@outlook.com", "skr010527")
 while (True):
+    try:
         bot.listen()
+    except Exception as e:
+        print (e)

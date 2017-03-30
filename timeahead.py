@@ -29,7 +29,7 @@ sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
 worksheet = sh.worksheet("Account")
 #sent = client.send(colonelid, "Google API Connected")
 #print ("Google API Connected")
-sent = client.send(colonelid, 'Debug:: Time runner begun')
+#sent = client.send(colonelid, 'Debug:: Time runner begun')
 # Login with your Google account
 
 bot_status = 0
@@ -55,7 +55,7 @@ while (True):
     # print('loop begin')
     now = datetime.now()
     # statuschk = ''
-    if now.date == 16 and now.hour == 0 and now.minute == 0 and (now.second >= 1 or now.second <= 2):  # Get Interest
+    if (now.day == 16 and now.hour == 0 and now.minute == 0 and now.second == 1 ):  # Get Interest
         # if(1):
         sent = client.send(colonelid, "AI has Awaken and Collecting Interest")
         print("AI has Awaken and Collecting Interest")
@@ -96,60 +96,81 @@ while (True):
                 text = f.readlines()
                 #sent = client.send(colonelid,  "Debug: Printing read line")
                 for line in text:
-                    curday = line[0:2]
-                    curmonth = line[3:5]
-                    curyear =  line[6:8]
-                    curhour = line[9:11]
-                    curmin =  line[12:14]
+                    curday = int(line[0:2])
+                    #print curday
+                    curmonth = int(line[3:5])
+                    #print curmonth
+                    curyear =  int(line[6:10])
+                    #print curyear
+                    curhour = int(line[11:13])
+                    #print curhour
+                    curmin =  int(line[14:16])
                     #sent = client.send(colonelid, curday)
                     #sent = client.send(colonelid,now.date)
                     #print (curday)
                     #print (now.date)
-                    if(curday == now.date and curmonth == now.month and curyear == now.year and curhour == now.hour):
+                    if(curhour > 1):
+                        curhour = curhour-1
+                    if(curday == now.day and curmonth == now.month and curyear == now.year and curhour == now.hour):
                     #if(1):
-                        gdate = "Date:" + (now.strftime("%d-%m-%Y"))
-                        sent = client.send(colonelid,gdate)
+                        gdate =  (now.strftime("%d-%m-%Y"))
+                        sent = client.send(colonelid,"Incoming Due List \nDate" +gdate)
                         # Open a file
                         fo = open(gdate, "r+")
-                        strws = fo.read()
-                        sent = client.send(colonelid,strws)
+                        for lines in fo:
+                            if str(curhour ) in line:
+                                sent = client.send(colonelid,line)
                         # Close opend file
                         fo.close()
                 # Close opend file
                 f.close()
             except Exception as e:
                 print (e)
-    if(now.hour == 6 and now.second==0 ):
-            try:
-                #client.send(colonelid,'Second = 0 in function loop')
-                gdate = ""
-                # Open a file
-                f = open("serverdate", "r+")
-                text = f.readlines()
-                #sent = client.send(colonelid,  "Debug: Printing read line")
-                for line in text:
-                    curday = line[0:2]
-                    curmonth = line[3:5]
-                    curyear =  line[6:8]
-                    curhour = line[9:11]
-                    curmin =  line[12:14]
-                    #sent = client.send(colonelid, curday)
-                    #sent = client.send(colonelid,now.date)
-                    #print (curday)
-                    #print (now.date)
-                    if(curday == now.date and curmonth == now.month and curyear == now.year):
-                    #if(1):
-                        sent = client.send(colonelid,random.choice(timesay))
-                        gdate = "Date:" + (now.strftime("%d-%m-%Y"))
-                        sent = client.send(colonelid,gdate)
-                        # Open a file
-                        fo = open(gdate, "r+")
-                        strws = fo.read()
-                        sent = client.send(colonelid,strws)
-                        # Close opend file
-                        fo.close()
+    if(now.hour == 6 and now.minute == 0 and now.second==0 ):
+    #if((now.second==0 or now.second == 30)):
+        #print('in condition')
+        try:
+            #client.send(colonelid,'Second = 0 in function loop')
+            #print ('get in try')
+            gdate = ""
+            sent = client.send(colonelid,random.choice(timesay))
+            # Open a file
+            f = open("serverdate", "r+")
+            text = f.readlines()
+            #print ('readlinedone')
+            #sent = client.send(colonelid,  "Debug: Printing read line")
+            for line in text:
+                curday = int(line[0:2])
+                #print curday
+                curmonth = int(line[3:5])
+                #print curmonth
+                curyear =  int(line[6:10])
+                #print curyear
+                curhour = int(line[11:13])
+                #print curhour
+                curmin =  int(line[14:16])
+                #print curmin
+                #sent = client.send(colonelid, curday)
+                #sent = client.send(colonelid,now.date)
+                print (curday+curmonth+curyear+curhour+curmin)
+                #print (now.date)
+                if(curday == now.day and curmonth == now.month and curyear == now.year):
+                #if(1):
+                    
+                    #print ('correct rolling in')
+                    
+                    gdate = (now.strftime("%d-%m-%Y"))
+                    sent = client.send(colonelid, "Date:"+gdate)
+                    # Open a file
+                    fo = open(gdate, "r+")
+                    strws = fo.read()
+                    sent = client.send(colonelid,strws)
+                    # Close opend file
+                    fo.close()
                 # Close opend file
                 f.close()
-            except Exception as e:
-                print (e)
+                break
+        except Exception as e:
+            print (e)
     time.sleep(1)
+    #print (now.second)

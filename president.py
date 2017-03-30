@@ -30,7 +30,7 @@ import os.path
 bot_status = 0
 bot_mode = 0
 # define hi or hello
-greet = ['ประธาน','Colonel','colonel','Top','top','ท๊อป','ท็อป','ทอป','ท้อป','ประทาน','ปธ']
+greet = ['ประธาน','Colonel','colonel','Top','top','ท๊อป','ท็อป','ทอป','ท้อป','ประทาน','ปธ','โคโลเนล','สวัสดี','หวัดดี']
 president_state = 0
 #execfile("timeahead.py")
 tellasc_cmd = ['tell all associate']
@@ -40,7 +40,7 @@ class EchoBot(fbchat.Client):
     def __init__(self, email, password, debug=True, user_agent=None):
         fbchat.Client.__init__(self, email, password, debug, user_agent)
     def on_message(self, mid, author_id, author_name, message, metadata):
-        #message = message.encode("utf-8")
+        message = message.encode("utf-8")
         print("%s said: %s" % (author_id, message))
         status = 0
         global president_state
@@ -66,7 +66,7 @@ class EchoBot(fbchat.Client):
                                 fo = open(id,"a")
                                 fo.write("1")
                                 fo.close()
-                                fo = open(checkid,"a")
+                                fo = open("checkid","a")
                                 fo.write(id+'\n')
                                 fo.close()
                             except Exception as e:
@@ -79,27 +79,33 @@ class EchoBot(fbchat.Client):
                 self.markAsDelivered(author_id, mid)  # mark delivered
                 self.markAsRead(self.uid)  # mark read
                 global president_state
-                if 'uto pilot' in message:
+                if 'uto pilot act' in message:
                     president_state = 1
                     sent = client.send(colonelid, 'Your Auto Pilot System Active Now ['+str(president_state)+']')
-                if 'top pilot' in message:
+                if 'top pilot act' in message:
                     president_state = 0
                     sent = client.send(colonelid, 'Your Auto Pilot System is Stop & Standby Now ['+str(president_state)+']')
-                    f = open(input_file)
+                    f = open('checkid')
                     for line in f:
                         try:
-                            os.remove(line)
+                            tmpstr = ''
+                            tmpstr += str(line)
+                            #print (line)
+                            client.send(colonelid,line)
+                            os.remove(tmpstr)
                         except Exception as e:
-                            sent = client.send(colonelid,"Debug::Self Contact Exception!")
+                            sent = client.send(colonelid,"Debug::Self Contact Exception!"+e)
+                            sent = client.send(colonelid,'Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e), e)
                     f.close()
                 if 'Show Pilot State' in message:
                     if president_state == 1:
                         sent = client.send(colonelid, 'Your Auto Pilot System Active Now ['+str(president_state)+']')
                     elif president_state == 0:
                         sent = client.send(colonelid, 'Your Auto Pilot System is Stop & Standby Now ['+str(president_state)+']')
-            except Exception as e:
-                    sent = client.send(colonelid,"Debug::Self Contact Exception!")
-                    sent = client.send(colonelid, e)
+            except Exception as e2:
+                    sent = client.send(colonelid,"Debug::Self else !")
+                    sent = client.send(colonelid, e2)
+                    #sent = client.send(colonelid,'Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e), e)
                 
 
 
