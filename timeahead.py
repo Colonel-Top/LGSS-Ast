@@ -9,7 +9,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 from datetime import datetime
 
-
+gdate = ""
 now = datetime.now()
 
 
@@ -90,7 +90,6 @@ while (True):
     if(now.min == 0 and now.second==0 ):
             try:
                 #client.send(colonelid,'Second = 0 in function loop')
-                global gdate
                 gdate = ""
                 # Open a file
                 f = open("serverdate", "r+")
@@ -123,7 +122,6 @@ while (True):
     if(now.hour == 6 and now.second==0 ):
             try:
                 #client.send(colonelid,'Second = 0 in function loop')
-                global gdate
                 gdate = ""
                 # Open a file
                 f = open("serverdate", "r+")
