@@ -46,7 +46,7 @@ simq_ans = ['I am Chloe The Secretary of Colonel','I am Chloe The Secretary of C
 bank_ask = ['eport account','ccount report','om engr account','pdate account','heck amout account','heck amout in account']
 bank_ans = ['Okay i will update account for you','Yes, wait a second','Let me check account','Here we go','Alright here is it','Ya this one ^^']
 
-execfile("timeahead.py")
+#execfile("timeahead.py")
 tellasc_cmd = ['tell all associate']
 tellasc_ans = ['Okay i will update send msg for you','Yes, wait a second','Let me work on it','Here we go','Alright here is it','Ya this one ^^']
 # Class def
