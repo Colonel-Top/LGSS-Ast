@@ -9,6 +9,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 from datetime import datetime
 
+
 now = datetime.now()
 
 
@@ -45,37 +46,13 @@ simq_ans = ['I am Chloe The Secretary of Colonel','I am Chloe The Secretary of C
 bank_ask = ['eport account','ccount report','om engr account','pdate account','heck amout account','heck amout in account']
 bank_ans = ['Okay i will update account for you','Yes, wait a second','Let me check account','Here we go','Alright here is it','Ya this one ^^']
 
-
+execfile("timeahead.py")
 tellasc_cmd = ['tell all associate']
 tellasc_ans = ['Okay i will update send msg for you','Yes, wait a second','Let me work on it','Here we go','Alright here is it','Ya this one ^^']
 # Class def
 class EchoBot(fbchat.Client):
     def __init__(self, email, password, debug=True, user_agent=None):
         fbchat.Client.__init__(self, email, password, debug, user_agent)
-    if(now.second == 0):
-        try:
-            # Open a file
-            f = open(gdate, "r+")
-            text = f.readlines()
-            for line in text:
-                curday = line[0:2]
-                curmonth = line[3:5]
-                curyear =  line[6:8]
-                curhour = line[9:11]
-                curmin =  line[12:14]
-                if(curday == now.date and curmonth == now.month and curyear == now.year and curhour == now.hour):
-                    gdate = (now.strftime("%d-%m-%Y"))
-                    self.send(author_id,gdate)
-                    # Open a file
-                    fo = open(gdate, "r+")
-                    strws = fo.read()
-                    self.send(author_id,strws)
-                    # Close opend file
-                    fo.close()
-            # Close opend file
-            f.close()
-        except Exception as e:
-            print (e)
     def on_message(self, mid, author_id, author_name, message, metadata):
         self.markAsDelivered(author_id, mid)  # mark delivered
         self.markAsRead(author_id)  # mark read
@@ -118,7 +95,7 @@ class EchoBot(fbchat.Client):
                     d = f.readlines()
                     tmpstring = ""
                     for line in d:
-                        if line != linetoremove:
+                        if line != linetoremove-1:
                             tmpstring += line
                     f.close()
                     os.remove(gdate)
@@ -295,40 +272,4 @@ class EchoBot(fbchat.Client):
 
 bot = EchoBot("colonel-secretary@outlook.com", "skr010527")
 while (True):
-    # print('loop begin')
-    now = datetime.now()
-    # statuschk = ''
-    if now.date == 16 and now.hour == 0 and now.minute == 0 and (now.second >= 1 or now.second <= 2):  # Get Interest
-        # if(1):
-        sent = client.send(colonelid, "AI has Awaken and Collecting Interest")
-        print("AI has Awaken and Collecting Interest")
-        credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
-        gc = gspread.authorize(credentials)
-        sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
-        worksheet = sh.worksheet("Account")
-        cell = worksheet.acell('U31').value
-        cell = cell.encode("utf-8")
-        monthcell = now.month
-        monthcell += 9
-        # monthcell += 10
-        for row in range(2, 31):  # Must be 31 in col or last parameter
-            peruser = 0
-            for col in range(8, 20):
-                tmp = worksheet.cell(row, col).value
-                print(tmp)
-                if (tmp == '0'):
-                    peruser += 1
-            # print("Done Per loop")
-            # print (peruser)
-            if peruser >= 2 and worksheet.cell(row, monthcell).value == '':
-                interest = int(worksheet.cell(row, 22).value)
-                interest += 1
-                # print (interest)
-                worksheet.update_cell(row, 22, interest)
-            if worksheet.cell(row, monthcell).value == '':
-                worksheet.update_cell(row, monthcell, 0)
-            if row == 8:
-                print("Skip Safe")
-                continue
-    else:
         bot.listen()
