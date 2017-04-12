@@ -15,7 +15,19 @@ now = datetime.now()
 
 from oauth2client.service_account import ServiceAccountCredentials
 import fbchat
-    def Login():
+client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+colonelid = 100000325120614
+scope = ['https://spreadsheets.google.com/feeds']
+state = '0'
+credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
+gc = gspread.authorize(credentials)
+sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
+worksheet = sh.worksheet("Account")
+    #sent = client.send(colonelid, "Google API Connected")
+print ("Google API Connected")
+    #sent = client.send(colonelid, 'Greeting Master')
+    # Login with your Google account
+def Login():
     client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
     colonelid = 100000325120614
     #sent = client.send(colonelid, "***********************")
@@ -31,7 +43,7 @@ import fbchat
     print ("Google API Connected")
     #sent = client.send(colonelid, 'Greeting Master')
     # Login with your Google account
-Login()
+
 sent = client.send(colonelid, "Google API Connected")
 sent = client.send(colonelid, "***********************")
 sent = client.send(colonelid, "Messenger API Connected")

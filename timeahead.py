@@ -8,13 +8,23 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 from datetime import datetime
-
-gdate = ""
-now = datetime.now()
-
-
 from oauth2client.service_account import ServiceAccountCredentials
 import fbchat
+gdate = ""
+now = datetime.now()
+client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+colonelid = 100000325120614
+    #sent = client.send(colonelid, "***********************")
+    #sent = client.send(colonelid, "Messenger API Connected")
+    #print ("Messenger API Connected")
+scope = ['https://spreadsheets.google.com/feeds']
+state = '0'
+credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
+gc = gspread.authorize(credentials)
+sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
+worksheet = sh.worksheet("Account")
+
+
 def Login():
     client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
     colonelid = 100000325120614
@@ -31,7 +41,7 @@ def Login():
 #print ("Google API Connected")
 #sent = client.send(colonelid, 'Debug:: Time runner begun')
 # Login with your Google account
-Login()
+
 bot_status = 0
 bot_mode = 0
 # define hi or hello
@@ -90,7 +100,9 @@ while (True):
                 print("Skip Safe")
                 continue
     if(now.min == 0 and now.second==0 ):
+    #if(now.second == 0):
             try:
+                print("Checking Schedule\n")
                 #client.send(colonelid,'Second = 0 in function loop')
                 gdate = ""
                 # Open a file
@@ -98,7 +110,11 @@ while (True):
                 text = f.readlines()
                 #sent = client.send(colonelid,  "Debug: Printing read line at hour")
                 for line in text:
-                    curday = int(line[0:2])
+                    now = datetime.now()
+                    try:
+                        curday = int(line[0:2])
+                    except ValueError:
+                        continue;
                     #print curday
                     curmonth = int(line[3:5])
                     #print curmonth
@@ -107,23 +123,32 @@ while (True):
                     curhour = int(line[11:13])
                     #print curhour
                     curmin =  int(line[14:16])
+                    #print curmin
                     #sent = client.send(colonelid, curday)
                     #sent = client.send(colonelid,now.date)
-                    #print (curday)
-                    #print (now.date)
+                   #print (str(curday)+" " + str(curmin) + " " + str(now.min))
+                    #print("*")
+                    
                     if(curhour >= 1):
                         curhour = curhour-1
                     if(curday == now.day and curmonth == now.month and curyear == now.year and curhour == now.hour):
                     #if(1):
-                        gdate =  (now.strftime("%d-%m-%Y"))
-                        sent = client.send(colonelid,"Incoming Due List \nDate" +gdate)
-                        # Open a file
-                        fo = open(gdate, "r+")
-                        for lines in fo:
-                            if str(curhour ) in lines:
-                                sent = client.send(colonelid,lines)
-                        # Close opend file
-                        fo.close()
+                        try:
+                            now = datetime.now()
+                            gdate =  (now.strftime("%d-%m-%Y"))
+                            sent = client.send(colonelid,"Incoming Due List \nDate" +gdate)
+                            # Open a file
+                            fo = open(gdate, "r+")
+                            for lines in fo:
+                                #print (lines)
+                                if str(curhour+1) in lines:
+                                    #if str(curmin) in lines:
+                                    sent = client.send(colonelid,lines)
+                            # Close opend file
+                            fo.close()
+                            break
+                        except Exception as es:
+                            print (es)
                 # Close opend file
                 f.close()
             except Exception as e:

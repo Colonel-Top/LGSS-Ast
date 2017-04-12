@@ -26,7 +26,16 @@ def Login():
     #print ("Google API Connected")
     #sent = client.send(colonelid, 'Your Auto Pilot System is Online now')
 # Login with your Google account
-Login()
+client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+    #chloeclient = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+colonelid = 100000325120614
+    #sent = client.send(colonelid, "***********************")
+    #sent = client.send(colonelid, "Messenger API Connected")
+    #print ("Messenger API Connected")
+
+    #print ("Google API Connected")
+    #sent = client.send(colonelid, 'Your Auto Pilot System is Online now')
+# Login with your Google account
 import os.path
 bot_status = 0
 bot_mode = 0
