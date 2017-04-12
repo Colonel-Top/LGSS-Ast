@@ -15,23 +15,26 @@ now = datetime.now()
 
 from oauth2client.service_account import ServiceAccountCredentials
 import fbchat
-
-client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
-colonelid = 100000325120614
+    def Login():
+    client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+    colonelid = 100000325120614
+    #sent = client.send(colonelid, "***********************")
+    #sent = client.send(colonelid, "Messenger API Connected")
+    print ("Messenger API Connected")
+    scope = ['https://spreadsheets.google.com/feeds']
+    state = '0'
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
+    gc = gspread.authorize(credentials)
+    sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
+    worksheet = sh.worksheet("Account")
+    #sent = client.send(colonelid, "Google API Connected")
+    print ("Google API Connected")
+    #sent = client.send(colonelid, 'Greeting Master')
+    # Login with your Google account
+Login()
+sent = client.send(colonelid, "Google API Connected")
 sent = client.send(colonelid, "***********************")
 sent = client.send(colonelid, "Messenger API Connected")
-print ("Messenger API Connected")
-scope = ['https://spreadsheets.google.com/feeds']
-state = '0'
-credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
-gc = gspread.authorize(credentials)
-sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
-worksheet = sh.worksheet("Account")
-sent = client.send(colonelid, "Google API Connected")
-print ("Google API Connected")
-sent = client.send(colonelid, 'Greeting Master')
-# Login with your Google account
-
 bot_status = 0
 bot_mode = 0
 # define hi or hello
@@ -55,7 +58,9 @@ class EchoBot(fbchat.Client):
         fbchat.Client.__init__(self, email, password, debug, user_agent)
     def on_message(self, mid, author_id, author_name, message, metadata):
         self.markAsDelivered(author_id, mid)  # mark delivered
-        self.markAsRead(author_id)  # mark read
+        self.markAsRead(author_id)
+        now = datetime.now()# mark read
+        
         #message = message.encode("utf-8")
         print("%s said: %s" % (author_id, message))
         status = 0
@@ -74,7 +79,7 @@ class EchoBot(fbchat.Client):
                     jobhour = message[11:13]
                     jobmin = message[14:16]
                     content = message[11:]
-                    content.encode("utf-8")
+                    #content.encode("utf-8")
                     fo = open(gdate, "a")
                     fo.write(content+"\n")
                     fo.close()
@@ -82,8 +87,8 @@ class EchoBot(fbchat.Client):
                     fo.write(gdate+","+jobhour+","+jobmin+"\n")
                     fo.close()
                     self.send(author_id,'เพิ่มตารางงาน,นัดหมายเรียบร้อยค่ะ')
-                except:
-                    self.send(author_id,'การเพิ่มตารางเวลาล้มเหลว')
+                except Exception as e:
+                    self.send(author_id,'การเพิ่มตารางเวลาล้มเหลว'+e)
                 bot_mode = 0
                 bot_status = 0
                 status = 1
@@ -187,11 +192,11 @@ class EchoBot(fbchat.Client):
                 if 'D' in message:
                     bot_mode = 0
                     bot_status = 0
-                    status =0
+                    status =1
                 if 'd' in message:
                     bot_mode = 0
                     bot_status = 0
-                    status = 0
+                    status = 1
             if status == 0:
                 for tmp in tellasc_cmd:
                     if tmp in message:
@@ -287,6 +292,9 @@ class EchoBot(fbchat.Client):
 
 bot = EchoBot("colonel-secretary@outlook.com", "skr010527")
 while (True):
+    now = datetime.now()
+    if(now.hour == 1 and now.minute == 0 and now.second == 1):
+        Login()
     try:
         bot.listen()
     except Exception as e:

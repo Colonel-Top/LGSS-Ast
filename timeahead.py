@@ -15,23 +15,23 @@ now = datetime.now()
 
 from oauth2client.service_account import ServiceAccountCredentials
 import fbchat
-
-client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
-colonelid = 100000325120614
-#sent = client.send(colonelid, "***********************")
-#sent = client.send(colonelid, "Messenger API Connected")
-#print ("Messenger API Connected")
-scope = ['https://spreadsheets.google.com/feeds']
-state = '0'
-credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
-gc = gspread.authorize(credentials)
-sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
-worksheet = sh.worksheet("Account")
+def Login():
+    client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+    colonelid = 100000325120614
+    #sent = client.send(colonelid, "***********************")
+    #sent = client.send(colonelid, "Messenger API Connected")
+    #print ("Messenger API Connected")
+    scope = ['https://spreadsheets.google.com/feeds']
+    state = '0'
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
+    gc = gspread.authorize(credentials)
+    sh = gc.open_by_key('1m0OUgl7O3lXEGV6XOa_I-kUJmxBTx6yZP5VrERjQWOM')
+    worksheet = sh.worksheet("Account")
 #sent = client.send(colonelid, "Google API Connected")
 #print ("Google API Connected")
 #sent = client.send(colonelid, 'Debug:: Time runner begun')
 # Login with your Google account
-
+Login()
 bot_status = 0
 bot_mode = 0
 # define hi or hello
@@ -42,7 +42,7 @@ backasgre_f = ['Your welcome','With Pleasure :)','with Appreciated','Ya','Okay ^
 menu_cmd = ['pen menu','pen Menu','เปิดเมนู','เรียกเมนู','show function','Show function','Show Menu','show menu','Show menu']
 simq_ask = ['ho are you','hat do you do','ho is your boss','ho am i','ell me a joke','ell me some joke']
 simq_ans = ['I am Chloe The Secretary of Colonel','I am Chloe The Secretary of Colonel ^^ Helping My Master & you guys','My Boss or my master is Colonel','Some Human in this world','Joke ? google it :)','Ahh Nope']
-timesay = ['Greeting','Good morning','Enjoy New Life Sir' ,'Begin the day','Fight the day']
+timesay = ['Greeting','Good morning','Enjoy New Day Sir' ,'Begin the day','Fight the day']
 bank_ask = ['eport account','ccount report','om engr account','pdate account','heck amout account','heck amout in account']
 bank_ans = ['Okay i will update account for you','Yes, wait a second','Let me check account','Here we go','Alright here is it','Ya this one ^^']
 
@@ -55,9 +55,11 @@ while (True):
     # print('loop begin')
     now = datetime.now()
     # statuschk = ''
+    if(now.hour == 1 and now.minute == 0 and now.second == 1):
+        Login()
     if (now.day == 16 and now.hour == 0 and now.minute == 0 and now.second == 1 ):  # Get Interest
         # if(1):
-        sent = client.send(colonelid, "AI has Awaken and Collecting Interest")
+        sent = client.send(colonelid, "Chloe has Awaken and Collecting Interest")
         print("AI has Awaken and Collecting Interest")
         credentials = ServiceAccountCredentials.from_json_keyfile_name('client_code.json', scope)
         gc = gspread.authorize(credentials)
@@ -94,7 +96,7 @@ while (True):
                 # Open a file
                 f = open("serverdate", "r+")
                 text = f.readlines()
-                #sent = client.send(colonelid,  "Debug: Printing read line")
+                #sent = client.send(colonelid,  "Debug: Printing read line at hour")
                 for line in text:
                     curday = int(line[0:2])
                     #print curday
@@ -109,7 +111,7 @@ while (True):
                     #sent = client.send(colonelid,now.date)
                     #print (curday)
                     #print (now.date)
-                    if(curhour > 1):
+                    if(curhour >= 1):
                         curhour = curhour-1
                     if(curday == now.day and curmonth == now.month and curyear == now.year and curhour == now.hour):
                     #if(1):
@@ -118,15 +120,15 @@ while (True):
                         # Open a file
                         fo = open(gdate, "r+")
                         for lines in fo:
-                            if str(curhour ) in line:
-                                sent = client.send(colonelid,line)
+                            if str(curhour ) in lines:
+                                sent = client.send(colonelid,lines)
                         # Close opend file
                         fo.close()
                 # Close opend file
                 f.close()
             except Exception as e:
                 print (e)
-    if(now.hour == 6 and now.minute == 0 and now.second==0 ):
+    if now.hour == 6 and now.minute == 0 and now.second==0:
     #if((now.second==0 or now.second == 30)):
         #print('in condition')
         try:
@@ -143,7 +145,7 @@ while (True):
                 curday = int(line[0:2])
                 #print curday
                 curmonth = int(line[3:5])
-                #print curmonth
+               # print curmonth
                 curyear =  int(line[6:10])
                 #print curyear
                 curhour = int(line[11:13])
@@ -152,24 +154,27 @@ while (True):
                 #print curmin
                 #sent = client.send(colonelid, curday)
                 #sent = client.send(colonelid,now.date)
-                print (curday+curmonth+curyear+curhour+curmin)
+                #print (curday+curmonth+curyear+curhour+curmin)
                 #print (now.date)
                 if(curday == now.day and curmonth == now.month and curyear == now.year):
                 #if(1):
                     
                     #print ('correct rolling in')
-                    
-                    gdate = (now.strftime("%d-%m-%Y"))
-                    sent = client.send(colonelid, "Date:"+gdate)
-                    # Open a file
-                    fo = open(gdate, "r+")
-                    strws = fo.read()
-                    sent = client.send(colonelid,strws)
-                    # Close opend file
-                    fo.close()
+                    try:
+                        gdate = (now.strftime("%d-%m-%Y"))
+                        sent = client.send(colonelid, "Date:"+gdate)
+                        # Open a file
+                        fo = open(gdate, "r+")
+                        strws = fo.read()
+                        sent = client.send(colonelid,strws)
+                        # Close opend file
+                        fo.close()
+                        break
+                    except Exception as e:
+                        client.send(colonelid,e)
                 # Close opend file
                 f.close()
-                break
+                
         except Exception as e:
             print (e)
     time.sleep(1)

@@ -15,17 +15,18 @@ now = datetime.now()
 
 from oauth2client.service_account import ServiceAccountCredentials
 import fbchat
+def Login():
+    client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+    #chloeclient = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
+    colonelid = 100000325120614
+    #sent = client.send(colonelid, "***********************")
+    #sent = client.send(colonelid, "Messenger API Connected")
+    #print ("Messenger API Connected")
 
-client = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
-#chloeclient = fbchat.Client("colonel-secretary@outlook.com", "skr010527")
-colonelid = 100000325120614
-#sent = client.send(colonelid, "***********************")
-#sent = client.send(colonelid, "Messenger API Connected")
-#print ("Messenger API Connected")
-
-#print ("Google API Connected")
-sent = client.send(colonelid, 'Your Auto Pilot System is Online now')
+    #print ("Google API Connected")
+    #sent = client.send(colonelid, 'Your Auto Pilot System is Online now')
 # Login with your Google account
+Login()
 import os.path
 bot_status = 0
 bot_mode = 0
@@ -111,4 +112,10 @@ class EchoBot(fbchat.Client):
 
 bot = EchoBot("promsurinm@hotmail.com", "%(!)^!##!#")
 while (True):
+    now = datetime.now()
+    if(now.hour == 1 and now.minute == 0 and now.second == 1):
+        Login()
+    try:
         bot.listen()
+    except Exception as e:
+        print (e)
